@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('css')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
 @endsection
 
 @section('content')
@@ -18,8 +18,8 @@
                         <div class="hero__content p-relative z-index-1">
                             <h3 class="hero__title">
                                 <span>{{ $hero->judul ?? 'Selamat Datang di Website' }}</span>
-                                <span class="yellow-shape">Call In BK<img src="assets/img/shape/yellow-bg.png"
-                                        alt="yellow-shape"> </span>
+                                <span class="yellow-shape">Call In BK<img
+                                        src="{{ asset('assets/img/shape/yellow-bg.png') }}" alt="yellow-shape"> </span>
                             </h3>
                             <p>{{ $hero->subjudul ?? 'Sampaikan keluhan dan masalah, jalan keluar pasti lebih terarah' }}
                             </p>
@@ -28,9 +28,12 @@
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                         <div class="hero__thumb d-flex p-relative">
                             <div class="hero__thumb-shape">
-                                <img class="hero-1-dot" src="assets/img/shape/hero/hero-1-dot.png" alt="">
-                                <img class="hero-1-circle-3" src="assets/img/shape/hero/hero-1-circle-3.png" alt="">
-                                <img class="hero-1-circle-4" src="assets/img/shape/hero/hero-1-circle-4.png" alt="">
+                                <img class="hero-1-dot" src="{{ asset('assets/img/shape/hero/hero-1-dot.png') }}"
+                                    alt="">
+                                <img class="hero-1-circle-3" src="{{ asset('assets/img/shape/hero/hero-1-circle-3.png') }}"
+                                    alt="">
+                                <img class="hero-1-circle-4" src="{{ asset('assets/img/shape/hero/hero-1-circle-4.png') }}"
+                                    alt="">
                             </div>
                             <div class="hero__thumb-big mr-30">
                                 @if ($hero && $hero->gambar1)
@@ -60,8 +63,8 @@
     <!-- hero area end -->
     <section class="teacher__area pt-100 pb-110">
         <div class="page__title-shape">
-            <img class="page-title-shape-5 d-none d-sm-block" src="assets/img/page-title/page-title-shape-1.png"
-                alt="">
+            <img class="page-title-shape-5 d-none d-sm-block"
+                src="{{ asset('assets/img/page-title/page-title-shape-1.png') }}" alt="">
             <img class="page-title-shape-6" src="{{ asset('assets/img/page-title/page-title-shape-6.png') }}"
                 alt="">
             <img class="page-title-shape-3" src="{{ asset('assets/img/page-title/page-title-shape-3.png') }}"
@@ -80,17 +83,17 @@
                             <img src="{{ asset('assets/img/teacher/koor_bk.jpg') }}" alt="Koordinator BK">
                         @endif
                         <div class="teacher__details-shape">
-                            <img class="teacher-details-shape-1" src="assets/img/teacher/details/shape/shape-1.png"
-                                alt="">
-                            <img class="teacher-details-shape-2" src="assets/img/teacher/details/shape/shape-2.png"
-                                alt="">
+                            <img class="teacher-details-shape-1"
+                                src="{{ asset('assets/img/teacher/details/shape/shape-1.png') }}" alt="">
+                            <img class="teacher-details-shape-2"
+                                src="{{ asset('assets/img/teacher/details/shape/shape-2.png') }}" alt="">
                         </div>
                     </div>
                     @if ($koordinator)
                         <div class="teacher__name text-center mt-3">
                             <h4>
                                 <span class="yellow-shape">{{ $koordinator->nama }}<img
-                                        src="assets/img/shape/yellow-bg.png" alt="yellow-shape"> </span>
+                                        src="{{ asset('assets/img/shape/yellow-bg.png') }}" alt="yellow-shape"> </span>
                             </h4>
                         </div>
                     @endif
@@ -172,7 +175,12 @@
                 </div>
                 <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-8">
                     <div class="why__thumb">
-                        <img src="{{ asset('storage/' . $visi->foto) }}" alt="Foto Visi" class="img-fluid rounded">
+                        @if ($visi && $visi->foto)
+                            <img src="{{ asset('storage/' . $visi->foto) }}" alt="Foto Visi" class="img-fluid rounded">
+                        @else
+                            <img src="{{ asset('assets/img/why/why-2.png') }}" alt="Default Visi"
+                                class="img-fluid rounded">
+                        @endif
                         <img class="why-green" src="{{ asset('assets/img/why/why-shape-green.png') }}" alt="">
                         <img class="why-pink" src="{{ asset('assets/img/why/why-shape-pink.png') }}" alt="">
                         <img class="why-dot" src="{{ asset('assets/img/why/why-shape-dot.png') }}" alt="">
@@ -326,8 +334,9 @@
                 <div class="col-xxl-5 col-xl-6 col-lg-6">
                     <div class="section__title-wrapper mb-60">
                         <h2 class="section__title">Temukan Bantuan<br>Bimbingan <span
-                                class="yellow-bg yellow-bg-big">Konseling<img src="assets/img/shape/yellow-bg.png"
-                                    alt=""></span> yang Tepat</h2>
+                                class="yellow-bg yellow-bg-big">Konseling<img
+                                    src="{{ asset('assets/img/shape/yellow-bg.png') }}" alt=""></span> yang Tepat
+                        </h2>
                         <p>Call In BK hadir untuk membantumu menemukan solusi dan dukungan dalam perjalanan pendidikanmu.
                         </p>
                     </div>
@@ -339,10 +348,15 @@
                         <div class="course__item white-bg mb-30 fix">
                             <div class="course__thumb w-img p-relative fix">
                                 <a href="#">
-                                    <img src="{{ asset('storage/' . $guru->foto) }}" alt="{{ $guru->nama }}">
+                                    @if ($guru && $guru->foto)
+                                        <img src="{{ asset('storage/' . $guru->foto) }}" alt="{{ $guru->nama }}">
+                                    @else
+                                        <img src="{{ asset('assets/img/course/course-1.jpg') }}"
+                                            alt="Default Guru Image">
+                                    @endif
                                 </a>
                                 <div class="course__tag">
-                                    <a href="#">{{ $guru->jabatan }}</a>
+                                    <a href="#">{{ $guru->jabatan ?? 'Guru BK' }}</a>
                                 </div>
                             </div>
                             <div class="course__content">
@@ -351,11 +365,17 @@
                                         <span><i class="far fa-book-alt"></i>{{ $guru->nip ?: 'NIP belum diisi' }}</span>
                                     </div>
                                 </div>
-                                <h3 class="course__title"><a
-                                        href="#">{{ $guru->bio_singkat ?: 'Bio singkat belum tersedia' }}</a></h3>
+                                <h3 class="course__title">
+                                    href="#">{{ $guru->bio_singkat ?: 'Bio singkat belum tersedia' }}</a></h3>
                                 <div class="course__teacher d-flex align-items-center">
                                     <div class="course__teacher-thumb mr-15">
-                                        <img src="{{ asset('storage/' . $guru->avatar) }}" alt="{{ $guru->nama }}">
+                                        @if ($guru && $guru->avatar)
+                                            <img src="{{ asset('storage/' . $guru->avatar) }}"
+                                                alt="{{ $guru->nama }}">
+                                        @else
+                                            <img src="{{ asset('assets/img/course/teacher/teacher-1.jpg') }}"
+                                                alt="Default Avatar">
+                                        @endif
                                     </div>
                                     <h6><a href="#">{{ $guru->nama }}</a></h6>
                                 </div>
@@ -382,7 +402,7 @@
                     <div class="contact__wrapper">
                         <div class="section__title-wrapper mb-40">
                             <h2 class="section__title"><span class="yellow-bg yellow-bg-big">Kontak<img
-                                        src="assets/img/shape/yellow-bg.png" alt=""></span></h2>
+                                        src="{{ asset('assets/img/shape/yellow-bg.png') }}" alt=""></span></h2>
                             <p>Mari lebih dekat bersama kami</p>
                         </div>
                         <div class="contact__form">
@@ -537,44 +557,44 @@
     <!-- cta area end -->
 @endsection
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        @if(session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: "{{ session('success') }}",
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-            });
-        @endif
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: "{{ session('success') }}",
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            @endif
 
-        @if(session('error'))
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "{{ session('error') }}",
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'OK'
-            });
-        @endif
-        const form = document.getElementById('contactForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                if (form.checkValidity()) {
-                    Swal.fire({
-                        title: 'Mengirim pesan...',
-                        html: 'Mohon tunggu sebentar',
-                        allowOutsideClick: false,
-                        didOpen: () => {
-                            Swal.showLoading();
-                        }
-                    });
-                }
-            });
-        }
-    });
-</script>
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "{{ session('error') }}",
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    if (form.checkValidity()) {
+                        Swal.fire({
+                            title: 'Mengirim pesan...',
+                            html: 'Mohon tunggu sebentar',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
