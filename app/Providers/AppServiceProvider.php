@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Models\Pengaturan\PengaturanSitus;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('partials.header', function ($view) {
+            $pengaturan = PengaturanSitus::first();
+            $view->with('logo', $pengaturan ? $pengaturan->logo : 'assets/img/logo.jpg');
+        });
+
+        View::composer('partials.footer', function ($view) {
+            $pengaturan = PengaturanSitus::first();
+            $view->with('pengaturan', $pengaturan);
+        });
     }
 }

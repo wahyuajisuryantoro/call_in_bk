@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+@endsection
+
 @section('content')
     <!-- hero area start -->
     <section class="hero__area hero__height d-flex align-items-center grey-bg-2 p-relative">
@@ -69,8 +73,9 @@
             <div class="row">
                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                     <div class="teacher__details-thumb p-relative w-img pr-30">
-                        @if($koordinator && $koordinator->foto)
-                            <img src="{{ asset('storage/' . $koordinator->foto) }}" alt="{{ $koordinator->nama ?? 'Koordinator BK' }}">
+                        @if ($koordinator && $koordinator->foto)
+                            <img src="{{ asset('storage/' . $koordinator->foto) }}"
+                                alt="{{ $koordinator->nama ?? 'Koordinator BK' }}">
                         @else
                             <img src="{{ asset('assets/img/teacher/koor_bk.jpg') }}" alt="Koordinator BK">
                         @endif
@@ -81,22 +86,22 @@
                                 alt="">
                         </div>
                     </div>
-                    @if($koordinator)
-                    <div class="teacher__name text-center mt-3">
-                        <h4>
-                            <span class="yellow-shape">{{ $koordinator->nama }}<img src="assets/img/shape/yellow-bg.png" alt="yellow-shape"> </span>
-                        </h4>
-                    </div>
+                    @if ($koordinator)
+                        <div class="teacher__name text-center mt-3">
+                            <h4>
+                                <span class="yellow-shape">{{ $koordinator->nama }}<img
+                                        src="assets/img/shape/yellow-bg.png" alt="yellow-shape"> </span>
+                            </h4>
+                        </div>
                     @endif
                 </div>
                 <div class="col-xxl-8 col-xl-8 col-lg-8">
                     <div class="teacher__bio" style="text-align: justify;">
                         <h3>Assalamu'alaikum Wr. Wb.</h3>
-                        
-                        @if($koordinator && $koordinator->sambutan)
+
+                        @if ($koordinator && $koordinator->sambutan)
                             {!! $koordinator->sambutan !!}
                         @else
-                           
                             <p>
                                 <strong>
                                     Tidak Ada Data
@@ -125,62 +130,41 @@
                             <h2 class="section__title"><span class="yellow-bg yellow-bg-big">Visi<img
                                         src="{{ asset('assets/img/shape/yellow-bg.png') }}" alt=""></span></h2>
                             <div class="about__list mb-35">
-                                <p>
-                                    Menjadi wadah yang aman dan nyaman bagi siswa dan orang tua/wali untuk berbagi, mencari
-                                    solusi, dan tumbuh bersama dalam menghadapi tantangan pendidikan dan kehidupan.
-                                </p>
+                                @if ($visi)
+                                    <p>{{ $visi->isi }}</p>
+                                @else
+                                    <strong>Tidak Ada</strong>
+                                @endif
                             </div>
+
                         </div>
+
                         <div class="section__title-wrapper mb-30">
                             <h2 class="section__title"><span class="yellow-bg yellow-bg-big">Misi<img
                                         src="{{ asset('assets/img/shape/yellow-bg.png') }}" alt=""></span></h2>
                             <div class="about__list mb-35">
                                 <ul>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Menyediakan layanan
-                                        bimbingan dan konseling online yang mudah diakses dan profesional.
-                                    </li>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Membantu siswa dan
-                                        orang tua/wali mengatasi masalah dan tantangan yang dihadapi dalam proses
-                                        pendidikan.
-                                    </li>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Membangun hubungan
-                                        yang positif dan suportif antara siswa, orang tua/wali, dan guru.
-                                    </li>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Menyediakan
-                                        informasi
-                                        dan sumber daya yang bermanfaat untuk mendukung perkembangan siswa.
-                                    </li>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Menjadi tempat yang
-                                        aman dan nyaman untuk berbagi dan mencari solusi.
-                                    </li>
+                                    @forelse($misi as $item)
+                                        <li class="d-flex align-items-center"> <i class="icon_check"></i>
+                                            {{ $item->isi }}</li>
+                                    @empty
+                                        <strong>Tidak Ada Data</strong>
+                                    @endforelse
                                 </ul>
                             </div>
                         </div>
+
                         <div class="section__title-wrapper mb-30">
                             <h2 class="section__title"><span class="yellow-bg yellow-bg-big">Tujuan<img
                                         src="{{ asset('assets/img/shape/yellow-bg.png') }}" alt=""></span></h2>
                             <div class="about__list mb-35">
                                 <ul>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Mengatasi masalah
-                                        akademik dan non-akademik
-
-                                    </li>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i>Meningkatkan
-                                        kesadaran diri dan kemampuan mengelola emosi
-
-                                    </li>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Membangun hubungan
-                                        yang positif dengan guru dan teman
-
-                                    </li>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Mengembangkan
-                                        keterampilan hidup yang positif
-
-                                    </li>
-                                    <li class="d-flex align-items-center"> <i class="icon_check"></i> Meningkatkan
-                                        prestasi akademik dan non-akademik
-
-                                    </li>
+                                    @forelse($tujuan as $item)
+                                        <li class="d-flex align-items-center"> <i class="icon_check"></i>
+                                            {{ $item->isi }}</li>
+                                    @empty
+                                        <strong>Tidak Ada Data</strong>
+                                    @endforelse
                                 </ul>
                             </div>
                         </div>
@@ -188,7 +172,7 @@
                 </div>
                 <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-8">
                     <div class="why__thumb">
-                        <img src="assets/img/why/why.png" alt="">
+                        <img src="{{ asset('storage/' . $visi->foto) }}" alt="Foto Visi" class="img-fluid rounded">
                         <img class="why-green" src="{{ asset('assets/img/why/why-shape-green.png') }}" alt="">
                         <img class="why-pink" src="{{ asset('assets/img/why/why-shape-pink.png') }}" alt="">
                         <img class="why-dot" src="{{ asset('assets/img/why/why-shape-dot.png') }}" alt="">
@@ -341,285 +325,50 @@
             <div class="row align-items-end">
                 <div class="col-xxl-5 col-xl-6 col-lg-6">
                     <div class="section__title-wrapper mb-60">
-                        <h2 class="section__title">Find the Right<br>Online <span
-                                class="yellow-bg yellow-bg-big">Course<img src="assets/img/shape/yellow-bg.png"
-                                    alt=""></span> for you</h2>
-                        <p>You don't have to struggle alone, you've got our assistance and help.</p>
-                    </div>
-                </div>
-                <div class="col-xxl-7 col-xl-6 col-lg-6">
-                    <div class="course__menu d-flex justify-content-lg-end mb-60">
-                        <div class="masonary-menu filter-button-group">
-                            <button class="active" data-filter="*">
-                                See All
-                                <span class="tag">new</span>
-                            </button>
-                            <button data-filter=".cat1">Trending</button>
-                            <button data-filter=".cat2">Popularity</button>
-                            <button data-filter=".cat3">Featured</button>
-                            <button data-filter=".cat4">Art & Design</button>
-                        </div>
+                        <h2 class="section__title">Temukan Bantuan<br>Bimbingan <span
+                                class="yellow-bg yellow-bg-big">Konseling<img src="assets/img/shape/yellow-bg.png"
+                                    alt=""></span> yang Tepat</h2>
+                        <p>Call In BK hadir untuk membantumu menemukan solusi dan dukungan dalam perjalanan pendidikanmu.
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="row grid">
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat1 cat2 cat4">
-                    <div class="course__item white-bg mb-30 fix">
-                        <div class="course__thumb w-img p-relative fix">
-                            <a href="course-details.html">
-                                <img src="assets/img/course/course-1.jpg" alt="">
-                            </a>
-                            <div class="course__tag">
-                                <a href="#">Art & Design</a>
-                            </div>
-                        </div>
-                        <div class="course__content">
-                            <div class="course__meta d-flex align-items-center justify-content-between">
-                                <div class="course__lesson">
-                                    <span><i class="far fa-book-alt"></i>43 Lesson</span>
-                                </div>
-                                <div class="course__rating">
-                                    <span><i class="icon_star"></i>4.5 (44)</span>
-                                </div>
-                            </div>
-                            <h3 class="course__title"><a href="course-details.html">Become a product Manager learn
-                                    the skills & job.</a></h3>
-                            <div class="course__teacher d-flex align-items-center">
-                                <div class="course__teacher-thumb mr-15">
-                                    <img src="assets/img/course/teacher/teacher-1.jpg" alt="">
-                                </div>
-                                <h6><a href="instructor-details.html">Jim Séchen</a></h6>
-                            </div>
-                        </div>
-                        <div class="course__more d-flex justify-content-between align-items-center">
-                            <div class="course__status">
-                                <span>Free</span>
-                            </div>
-                            <div class="course__btn">
-                                <a href="course-details.html" class="link-btn">
-                                    Know Details
-                                    <i class="far fa-arrow-right"></i>
-                                    <i class="far fa-arrow-right"></i>
+                @forelse($daftarGuru as $guru)
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat1 cat2 cat4">
+                        <div class="course__item white-bg mb-30 fix">
+                            <div class="course__thumb w-img p-relative fix">
+                                <a href="#">
+                                    <img src="{{ asset('storage/' . $guru->foto) }}" alt="{{ $guru->nama }}">
                                 </a>
+                                <div class="course__tag">
+                                    <a href="#">{{ $guru->jabatan }}</a>
+                                </div>
+                            </div>
+                            <div class="course__content">
+                                <div class="course__meta d-flex align-items-center justify-content-between">
+                                    <div class="course__lesson">
+                                        <span><i class="far fa-book-alt"></i>{{ $guru->nip ?: 'NIP belum diisi' }}</span>
+                                    </div>
+                                </div>
+                                <h3 class="course__title"><a
+                                        href="#">{{ $guru->bio_singkat ?: 'Bio singkat belum tersedia' }}</a></h3>
+                                <div class="course__teacher d-flex align-items-center">
+                                    <div class="course__teacher-thumb mr-15">
+                                        <img src="{{ asset('storage/' . $guru->avatar) }}" alt="{{ $guru->nama }}">
+                                    </div>
+                                    <h6><a href="#">{{ $guru->nama }}</a></h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat2 cat3 cat4">
-                    <div class="course__item white-bg mb-30 fix">
-                        <div class="course__thumb w-img p-relative fix">
-                            <a href="course-details.html">
-                                <img src="assets/img/course/course-2.jpg" alt="">
-                            </a>
-                            <div class="course__tag">
-                                <a href="#" class="sky-blue">Mechanical</a>
-                            </div>
-                        </div>
-                        <div class="course__content">
-                            <div class="course__meta d-flex align-items-center justify-content-between">
-                                <div class="course__lesson">
-                                    <span><i class="far fa-book-alt"></i>72 Lesson</span>
-                                </div>
-                                <div class="course__rating">
-                                    <span><i class="icon_star"></i>4.5 (44)</span>
-                                </div>
-                            </div>
-                            <h3 class="course__title"><a href="course-details.html">Fundamentals of music theory
-                                    Learn new</a></h3>
-                            <div class="course__teacher d-flex align-items-center">
-                                <div class="course__teacher-thumb mr-15">
-                                    <img src="assets/img/course/teacher/teacher-2.jpg" alt="">
-                                </div>
-                                <h6><a href="instructor-details.html">Barry Tone</a></h6>
-                            </div>
-                        </div>
-                        <div class="course__more d-flex justify-content-between align-items-center">
-                            <div class="course__status d-flex align-items-center">
-                                <span class="sky-blue">$32.00</span>
-                                <span class="old-price">$68.00</span>
-                            </div>
-                            <div class="course__btn">
-                                <a href="course-details.html" class="link-btn">
-                                    Know Details
-                                    <i class="far fa-arrow-right"></i>
-                                    <i class="far fa-arrow-right"></i>
-                                </a>
-                            </div>
+                @empty
+                    <div class="col-12">
+                        <div class="alert alert-info text-center">
+                            Data guru BK belum tersedia.
                         </div>
                     </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat3 cat4 cat3">
-                    <div class="course__item white-bg mb-30 fix">
-                        <div class="course__thumb w-img p-relative fix">
-                            <a href="course-details.html">
-                                <img src="assets/img/course/course-3.jpg" alt="">
-                            </a>
-                            <div class="course__tag">
-                                <a href="#" class="green">Development</a>
-                            </div>
-                        </div>
-                        <div class="course__content">
-                            <div class="course__meta d-flex align-items-center justify-content-between">
-                                <div class="course__lesson">
-                                    <span><i class="far fa-book-alt"></i>14 Lesson</span>
-                                </div>
-                                <div class="course__rating">
-                                    <span><i class="icon_star"></i>3.5 (55)</span>
-                                </div>
-                            </div>
-                            <h3 class="course__title"><a href="course-details.html">Strategy law and organization
-                                    Foundation</a></h3>
-                            <div class="course__teacher d-flex align-items-center">
-                                <div class="course__teacher-thumb mr-15">
-                                    <img src="assets/img/course/teacher/teacher-3.jpg" alt="">
-                                </div>
-                                <h6><a href="instructor-details.html">Elon Gated</a></h6>
-                            </div>
-                        </div>
-                        <div class="course__more d-flex justify-content-between align-items-center">
-                            <div class="course__status d-flex align-items-center">
-                                <span class="green">$46.00</span>
-                                <span class="old-price">$68.00</span>
-                            </div>
-                            <div class="course__btn">
-                                <a href="course-details.html" class="link-btn">
-                                    Know Details
-                                    <i class="far fa-arrow-right"></i>
-                                    <i class="far fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat4 cat1 cat3">
-                    <div class="course__item white-bg mb-30 fix">
-                        <div class="course__thumb w-img p-relative fix">
-                            <a href="course-details.html">
-                                <img src="assets/img/course/course-4.jpg" alt="">
-                            </a>
-                            <div class="course__tag">
-                                <a href="#" class="blue">Marketing</a>
-                            </div>
-                        </div>
-                        <div class="course__content">
-                            <div class="course__meta d-flex align-items-center justify-content-between">
-                                <div class="course__lesson">
-                                    <span><i class="far fa-book-alt"></i>22 Lesson</span>
-                                </div>
-                                <div class="course__rating">
-                                    <span><i class="icon_star"></i>4.5 (42)</span>
-                                </div>
-                            </div>
-                            <h3 class="course__title"><a href="course-details.html">The business Intelligence
-                                    analyst Course 2022</a></h3>
-                            <div class="course__teacher d-flex align-items-center">
-                                <div class="course__teacher-thumb mr-15">
-                                    <img src="assets/img/course/teacher/teacher-4.jpg" alt="">
-                                </div>
-                                <h6><a href="instructor-details.html">Eleanor Fant</a></h6>
-                            </div>
-                        </div>
-                        <div class="course__more d-flex justify-content-between align-items-center">
-                            <div class="course__status d-flex align-items-center">
-                                <span class="blue">$62.00</span>
-                                <span class="old-price">$97.00</span>
-                            </div>
-                            <div class="course__btn">
-                                <a href="course-details.html" class="link-btn">
-                                    Know Details
-                                    <i class="far fa-arrow-right"></i>
-                                    <i class="far fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat1 cat2 cat4">
-                    <div class="course__item white-bg mb-30 fix">
-                        <div class="course__thumb w-img p-relative fix">
-                            <a href="course-details.html">
-                                <img src="assets/img/course/course-5.jpg" alt="">
-                            </a>
-                            <div class="course__tag">
-                                <a href="#" class="orange">Audio & Music</a>
-                            </div>
-                        </div>
-                        <div class="course__content">
-                            <div class="course__meta d-flex align-items-center justify-content-between">
-                                <div class="course__lesson">
-                                    <span><i class="far fa-book-alt"></i>18 Lesson</span>
-                                </div>
-                                <div class="course__rating">
-                                    <span><i class="icon_star"></i>4.5 (37)</span>
-                                </div>
-                            </div>
-                            <h3 class="course__title"><a href="course-details.html">Build your media and Public
-                                    presence</a></h3>
-                            <div class="course__teacher d-flex align-items-center">
-                                <div class="course__teacher-thumb mr-15">
-                                    <img src="assets/img/course/teacher/teacher-5.jpg" alt="">
-                                </div>
-                                <h6><a href="instructor-details.html">Pelican Steve</a></h6>
-                            </div>
-                        </div>
-                        <div class="course__more d-flex justify-content-between align-items-center">
-                            <div class="course__status d-flex align-items-center">
-                                <span class="orange">$62.00</span>
-                                <span class="old-price">$97.00</span>
-                            </div>
-                            <div class="course__btn">
-                                <a href="course-details.html" class="link-btn">
-                                    Know Details
-                                    <i class="far fa-arrow-right"></i>
-                                    <i class="far fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat2 cat3">
-                    <div class="course__item white-bg mb-30 fix">
-                        <div class="course__thumb w-img p-relative fix">
-                            <a href="course-details.html">
-                                <img src="assets/img/course/course-6.jpg" alt="">
-                            </a>
-                            <div class="course__tag">
-                                <a href="#" class="pink">UX Design</a>
-                            </div>
-                        </div>
-                        <div class="course__content">
-                            <div class="course__meta d-flex align-items-center justify-content-between">
-                                <div class="course__lesson">
-                                    <span><i class="far fa-book-alt"></i>13 Lesson</span>
-                                </div>
-                                <div class="course__rating">
-                                    <span><i class="icon_star"></i>4.5 (72)</span>
-                                </div>
-                            </div>
-                            <h3 class="course__title"><a href="course-details.html">Creative writing through
-                                    Storytelling</a></h3>
-                            <div class="course__teacher d-flex align-items-center">
-                                <div class="course__teacher-thumb mr-15">
-                                    <img src="assets/img/course/teacher/teacher-6.jpg" alt="">
-                                </div>
-                                <h6><a href="instructor-details.html">Shahnewaz Sakil</a></h6>
-                            </div>
-                        </div>
-                        <div class="course__more d-flex justify-content-between align-items-center">
-                            <div class="course__status d-flex align-items-center">
-                                <span class="pink">$46.00</span>
-                                <span class="old-price">$72.00</span>
-                            </div>
-                            <div class="course__btn">
-                                <a href="course-details.html" class="link-btn">
-                                    Know Details
-                                    <i class="far fa-arrow-right"></i>
-                                    <i class="far fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -637,38 +386,47 @@
                             <p>Mari lebih dekat bersama kami</p>
                         </div>
                         <div class="contact__form">
-                            <form action="assets/mail.php">
+                            <form action="{{ route('pesan') }}" method="POST" id="contactForm">
+                                @csrf
                                 <div class="row">
                                     <div class="col-xxl-6 col-xl-6 col-md-6">
                                         <div class="contact__form-input">
-                                            <input type="text" placeholder="Nama" name="name">
+                                            <input type="text" placeholder="Nama" name="name" required
+                                                value="{{ old('name') }}">
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-xxl-6 col-xl-6 col-md-6">
                                         <div class="contact__form-input">
-                                            <input type="email" placeholder="Email" name="email">
+                                            <input type="email" placeholder="Email" name="email" required
+                                                value="{{ old('email') }}">
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-xxl-12">
                                         <div class="contact__form-input">
-                                            <input type="text" placeholder="Pesan" name="subject">
+                                            <input type="text" placeholder="Judul/Subject Pesan" name="subject"
+                                                required value="{{ old('subject') }}">
+                                            @error('subject')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-xxl-12">
                                         <div class="contact__form-input">
-                                            <textarea placeholder="Masukkan pesan anda" name="message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-xxl-12">
-                                        <div class="contact__form-agree  d-flex align-items-center mb-20">
-                                            <input class="e-check-input" type="checkbox" id="e-agree">
-                                            <label class="e-check-label" for="e-agree">I agree to the<a
-                                                    href="#">Terms & Conditions</a></label>
+                                            <textarea placeholder="Masukkan pesan anda" name="message" required>{{ old('message') }}</textarea>
+                                            @error('message')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-xxl-12">
                                         <div class="contact__btn">
-                                            <button type="submit" class="e-btn">Send your message</button>
+                                            <button type="submit" class="e-btn">Kirim Pesan</button>
                                         </div>
                                     </div>
                                 </div>
@@ -698,12 +456,11 @@
                                             </svg>
                                         </div>
                                         <div class="contact__info-text">
-                                            <h4>Magelang</h4>
-                                            <p><a target="_blank"
-                                                    href="https://www.google.com/maps/place/1+State+Senior+High+School+Grabag/@-7.3713293,110.3036495,17z/data=!3m1!4b1!4m6!3m5!1s0x2e7a80c093e8ccc1:0x661ad018e1321e17!8m2!3d-7.3713346!4d110.3062244!16s%2Fg%2F12353nfm?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoASAFQAw%3D%3D">
-                                                    126734, Susukan, Grabag, Kec. Grabag, Kabupaten Magelang, Jawa Tengah
-                                                    56196</a></p>
-
+                                            <h4>{{ $pengaturan->nama_situs ?? 'Nama Sekolah' }}</h4>
+                                            <p> <a target="_blank" href="{{ $pengaturan->link_map ?? '#' }}">
+                                                    {{ $pengaturan->alamat ?? 'Alamat belum diisi' }}
+                                                </a>
+                                            </p>
                                         </div>
                                     </div>
                                 </li>
@@ -718,7 +475,9 @@
                                         </div>
                                         <div class="contact__info-text">
                                             <h4>Email</h4>
-                                            <p><a href="mailto:sman1grabag@gmail.com">sman1grabag@gmail.com</a></p>
+                                            <a href="mailto:{{ $pengaturan->email ?? '' }}">
+                                                {{ $pengaturan->email ?? 'Email belum diisi' }}
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -732,7 +491,9 @@
                                         </div>
                                         <div class="contact__info-text">
                                             <h4>Phone</h4>
-                                            <p><a href="tel:(0293) 3148143">(0293) 3148143</a></p>
+                                            <a href="tel:{{ $pengaturan->telepon ?? '' }}">
+                                                {{ $pengaturan->telepon ?? 'Telepon belum diisi' }}
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -740,11 +501,11 @@
                             <div class="contact__social pl-30">
                                 <h4>Follow Us</h4>
                                 <ul>
-                                    <li><a href="https://www.facebook.com/sman1grabag" class="fb"><i
+                                    <li><a href="{{ $pengaturan->facebook ?? '#' }}" class="fb"><i
                                                 class="social_facebook"></i></a></li>
-                                    <li><a href="https://www.instagram.com/sman1grabag/?igshid=YmMyMTA2M2Y%3D"
-                                            class="ig"><i class="social_instagram"></i></a></li>
-                                    <li><a href="https://x.com/smansagra" class="tw"><i
+                                    <li><a href="{{ $pengaturan->instagram ?? '#' }}" class="ig"><i
+                                                class="social_instagram"></i></a></li>
+                                    <li><a href="{{ $pengaturan->twitter ?? '#' }}" class="tw"><i
                                                 class="social_twitter"></i></a></li>
                                 </ul>
                             </div>
@@ -774,4 +535,46 @@
         </div>
     </section>
     <!-- cta area end -->
+@endsection
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        @endif
+
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "{{ session('error') }}",
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'OK'
+            });
+        @endif
+        const form = document.getElementById('contactForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                if (form.checkValidity()) {
+                    Swal.fire({
+                        title: 'Mengirim pesan...',
+                        html: 'Mohon tunggu sebentar',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                }
+            });
+        }
+    });
+</script>
 @endsection

@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class BerandaVisi extends Model
 {
     protected $table = 'beranda_visi';
-    protected $fillable = ['isi'];
+    protected $fillable = ['isi', 'foto'];
 }

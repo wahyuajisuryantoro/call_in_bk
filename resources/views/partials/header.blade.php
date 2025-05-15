@@ -6,8 +6,12 @@
                 <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
                     <div class="header__left d-flex">
                         <div class="logo">
-                            <a href="index.html">
-                                <img src="{{ asset('assets/img/logo.jpg') }}" alt="logo">
+                            <a href="{{ route('landing') }}">
+                                <img 
+                                    src="{{ asset('storage/' . $logo) }}" 
+                                    alt="Logo"
+                                    style="width:80px; height:80px; object-fit:cover; border-radius:8px;"
+                                >
                             </a>
                         </div>
 
@@ -31,13 +35,13 @@
                                             <li><a href="blog-details.html">Video</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{{ route('kontak') }}">Kontak</a></li>
                                 </ul>
                             </nav>
                         </div>
 
                         <div class="header__btn ml-20 d-none d-sm-block">
-                            <a href="contact.html" class="e-btn">Try for free</a>
+                            <a href="{{ route('kontak') }}" class="e-btn">Hubungi Kami</a>
                         </div>
                         <div class="sidebar__menu d-xl-none">
                             <div class="sidebar-toggle-btn ml-30" id="sidebar-toggle">

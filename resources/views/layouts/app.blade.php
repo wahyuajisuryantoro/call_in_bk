@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/elegantFont.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    @yield('css')
 </head>
 
 <body>
@@ -93,6 +94,7 @@
     <script src="{{ asset('assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>

@@ -36,76 +36,123 @@
                 </div>                
             </div>
             <div class="row">
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                    <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
-                        <div class="teacher__thumb w-img fix">
-                            <a href="#">
-                                <img src="{{asset('assets/img/foto/galeri1.jpg')}}" alt="">
-                            </a>
-                        </div>
-                        <div class="teacher__content">
-                            <h3 class="teacher__title">Ruang BK</h3>                
-                        </div>
-                        <span> Ruang BK tampak dari depan</span>
-                    </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                    <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
-                        <div class="teacher__thumb w-img fix">
-                            <a href="#">
-                                <img src="{{asset('assets/img/foto/galeri2.jpg')}}" alt="">
-                            </a>
-                        </div>
-                        <div class="teacher__content">
-                            <h3 class="teacher__title">Ruang BK</h3>                
-                        </div>
-                        <span> Ruang BK tampak dari depan</span>
-                    </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                    <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
-                        <div class="teacher__thumb w-img fix">
-                            <a href="#">
-                                <img src="{{asset('assets/img/foto/galeri3.jpg')}}" alt="">
-                            </a>
-                        </div>
-                        <div class="teacher__content">
-                            <h3 class="teacher__title">Ruang BK</h3>                
-                        </div>
-                        <span> Ruang BK tampak dari depan</span>
-                    </div>
-                </div>
-                <!-- You can add more items below, maintaining the grid structure -->
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                    <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
-                        <div class="teacher__thumb w-img fix">
-                            <a href="#">
-                                <img src="{{asset('assets/img/foto/galeri4.jpg')}}" alt="">
-                            </a>
-                        </div>
-                        <div class="teacher__content">
-                            <h3 class="teacher__title">Kegiatan BK</h3>                
-                        </div>
-                        <span>Kegiatan konseling kelompok</span>
-                    </div>
-                </div>
-                <!-- Add more photos as needed -->
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                    <div class="teacher__item text-center grey-bg-5 transition-3 mb-30">
-                        <div class="teacher__thumb w-img fix">
-                            <a href="#">
-                                <img src="{{asset('assets/img/foto/galeri5.jpg')}}" alt="">
-                            </a>
-                        </div>
-                        <div class="teacher__content">
-                            <h3 class="teacher__title">Kegiatan BK</h3>                
-                        </div>
-                        <span>Kegiatan konseling kelompok</span>
-                    </div>
-                </div>
+                @if($galeriFotos->count() > 0)
+                    @foreach($galeriFotos as $galeriFoto)
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="blog__item white-bg mb-30 transition-3 fix">
+                                <div class="blog__thumb w-img fix">
+                                    <a href="javascript:;" class="open-foto-modal" data-foto="{{ asset('storage/' . $galeriFoto->foto) }}" data-judul="{{ $galeriFoto->judul_foto }}" data-kreator="{{ $galeriFoto->kreator }}" data-tanggal="{{ $galeriFoto->tanggal_upload->format('d M Y') }}">
+                                        <img src="{{ asset('storage/' . $galeriFoto->foto) }}" alt="{{ $galeriFoto->judul_foto }}">
+                                    </a>
+                                </div>
+                                <div class="blog__content">
+                                    <div class="blog__tag">
+                                        <a href="javascript:;">{{ $galeriFoto->kreator }}</a>
+                                    </div>
+                                    <h3 class="blog__title">
+                                        <a href="javascript:;" class="open-foto-modal" data-foto="{{ asset('storage/' . $galeriFoto->foto) }}" data-judul="{{ $galeriFoto->judul_foto }}" data-kreator="{{ $galeriFoto->kreator }}" data-tanggal="{{ $galeriFoto->tanggal_upload->format('d M Y') }}">
+                                            {{ $galeriFoto->judul_foto }}
+                                        </a>
+                                    </h3>
 
+                                    <div class="blog__meta d-flex align-items-center justify-content-between">
+                                        <div class="blog__date d-flex align-items-center">
+                                            <i class="fal fa-clock"></i>
+                                            <span>{{ $galeriFoto->tanggal_upload->format('d M Y') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="col-12 text-center">
+                        <div class="alert alert-info">
+                            Belum ada foto yang ditambahkan.
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
     <!-- teacher area end -->
+
+    <!-- Modal Foto -->
+    <div class="modal fade" id="fotoModal" tabindex="-1" aria-labelledby="fotoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fotoModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-0">
+                    <img src="" id="modalFoto" class="img-fluid" alt="Foto">
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <div>
+                            <span class="text-muted">Kreator: </span>
+                            <span id="modalKreator" class="fw-bold"></span>
+                        </div>
+                        <div>
+                            <span class="text-muted">Tanggal: </span>
+                            <span id="modalTanggal" class="fw-bold"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('.open-foto-modal').on('click', function() {
+            const fotoUrl = $(this).data('foto');
+            const judul = $(this).data('judul');
+            const kreator = $(this).data('kreator');
+            const tanggal = $(this).data('tanggal');
+            
+            $('#fotoModalLabel').text(judul);
+            $('#modalFoto').attr('src', fotoUrl);
+            $('#modalFoto').attr('alt', judul);
+            $('#modalKreator').text(kreator);
+            $('#modalTanggal').text(tanggal);
+            $('#fotoModal').modal('show');
+        });
+
+        $('#fotoModal').on('shown.bs.modal', function () {
+            $(document).on('keydown.modal', function(event) {
+                if (event.key === 'Escape') {
+                    $('#fotoModal').modal('hide');
+                }
+            });
+
+            $('#modalFoto').on('dblclick', function() {
+                if (!document.fullscreenElement) {
+                    if (document.documentElement.requestFullscreen) {
+                        document.documentElement.requestFullscreen();
+                    } else if (document.documentElement.webkitRequestFullscreen) {
+                        document.documentElement.webkitRequestFullscreen();
+                    } else if (document.documentElement.msRequestFullscreen) {
+                        document.documentElement.msRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
+            });
+        });
+        $('#fotoModal').on('hidden.bs.modal', function () {
+            $(document).off('keydown.modal');
+            $('#modalFoto').off('dblclick');
+        });
+    });
+</script>
 @endsection
