@@ -366,7 +366,7 @@
                                     </div>
                                 </div>
                                 <h3 class="course__title">
-                                    href="#">{{ $guru->bio_singkat ?: 'Bio singkat belum tersedia' }}</a></h3>
+                                    <a href="#">{{ $guru->bio_singkat ?: 'Bio singkat belum tersedia' }}</a></h3>
                                 <div class="course__teacher d-flex align-items-center">
                                     <div class="course__teacher-thumb mr-15">
                                         @if ($guru && $guru->avatar)
