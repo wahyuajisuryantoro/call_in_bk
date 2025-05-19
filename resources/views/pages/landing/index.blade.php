@@ -18,7 +18,7 @@
                         <div class="hero__content p-relative z-index-1">
                             <h3 class="hero__title">
                                 <span>{{ $hero->judul ?? 'Selamat Datang di Website' }}</span>
-                                <span class="yellow-shape">Call In BK<img
+                                <span class="yellow-shape">{{ $pengaturan->nama_situs }}<img
                                         src="{{ asset('assets/img/shape/yellow-bg.png') }}" alt="yellow-shape"> </span>
                             </h3>
                             <p>{{ $hero->subjudul ?? 'Sampaikan keluhan dan masalah, jalan keluar pasti lebih terarah' }}
