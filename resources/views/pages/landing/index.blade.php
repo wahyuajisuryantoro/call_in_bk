@@ -219,8 +219,8 @@
                             </svg>
                         </div>
                         <div class="category__content">
-                            <h4 class="category__title"><a href="course-details.html">Materi BK</a></h4>
-                            <p>Pengetahuan dan Pengembangan</p>
+                            <h4 class="category__title"><a href="course-details.html">Kolom Inspirasi</a></h4>
+                            <p>Inspirasi dari cerita cerita</p>
                         </div>
                     </div>
                 </div>
@@ -239,8 +239,8 @@
                             </svg>
                         </div>
                         <div class="category__content">
-                            <h4 class="category__title"><a href="course-details.html">Pengembangan Diri</a></h4>
-                            <p>Peningkatan bidang akademik / non akademik</p>
+                            <h4 class="category__title"><a href="course-details.html">Kata kata bijak dan motivasi</a></h4>
+                            <p>Pengembangan dan Motivasi</p>
                         </div>
                     </div>
                 </div>
@@ -259,8 +259,8 @@
                             </svg>
                         </div>
                         <div class="category__content">
-                            <h4 class="category__title"><a href="course-details.html">Konseling Online</a></h4>
-                            <p>Dukung konseling Online melalu website</p>
+                            <h4 class="category__title"><a href="course-details.html">Mutiaraku</a></h4>
+                            <p>Penyemangat diri</p>
                         </div>
                     </div>
                 </div>
@@ -279,8 +279,8 @@
                             </svg>
                         </div>
                         <div class="category__content">
-                            <h4 class="category__title"><a href="course-details.html">Pembuatan Keputusan</a></h4>
-                            <p>Membantu siswa mengidentifikasi masalah</p>
+                            <h4 class="category__title"><a href="course-details.html">Wahana BK</a></h4>
+                            <p>Pengetahuan dan Pengembangan</p>
                         </div>
                     </div>
                 </div>
