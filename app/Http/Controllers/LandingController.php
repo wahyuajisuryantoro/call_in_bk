@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Beranda\BerandaTujuan;
 use App\Models\Tentang\TentangKonten;
+use App\Models\Beranda\BerandaLayanan;
 use App\Models\Beranda\BerandaDaftarGuru;
 use App\Models\Beranda\BerandaKoordinator;
 use App\Models\Pengaturan\PengaturanSitus;
@@ -27,6 +28,7 @@ class LandingController extends Controller
         $visi = BerandaVisi::first();
         $misi = BerandaMisi::orderBy('urutan', 'asc')->get();
         $tujuan = BerandaTujuan::orderBy('urutan', 'asc')->get();
+        $layanan = BerandaLayanan::orderBy('urutan', 'asc')->get();
         $daftarGuru = BerandaDaftarGuru::orderBy('urutan', 'asc')->get();
 
         return view('pages.landing.index', compact(
@@ -37,6 +39,7 @@ class LandingController extends Controller
             'visi',
             'misi',
             'tujuan',
+            'layanan',
             'daftarGuru'
         ));
     }
