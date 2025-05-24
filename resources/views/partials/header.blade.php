@@ -32,7 +32,7 @@
                                         <a href="#">Galeri</a>
                                         <ul class="submenu">
                                             <li><a href="{{ route('foto') }}">Foto</a></li>
-                                            <li><a href="blog-details.html">Video</a></li>
+                                            {{-- <li><a href="blog-details.html">Video</a></li> --}}
                                         </ul>
                                     </li>
                                     <li><a href="{{ route('kontak') }}">Kontak</a></li>

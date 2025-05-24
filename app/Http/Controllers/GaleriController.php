@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Galeri\GaleriFoto;
 use Illuminate\Http\Request;
+use App\Models\Galeri\GaleriFoto;
+use App\Models\Pengaturan\PengaturanSitus;
 
 class GaleriController extends Controller
 {
@@ -11,6 +12,7 @@ class GaleriController extends Controller
     {
         $title = 'Foto';
         $galeriFotos = GaleriFoto::orderBy('tanggal_upload', 'desc')->get();
-        return view('pages.galeri.foto', compact('title', 'galeriFotos'));
+        $pengaturan = PengaturanSitus::first();
+        return view('pages.galeri.foto', compact('title', 'galeriFotos', 'pengaturan'));
     }
 }

@@ -29,9 +29,9 @@
                 <div class="col-xxl-6 offset-xxl-3">
                     <div class="section__title-wrapper text-center mb-60">
                         <h2 class="section__title">Galeri Foto <br>
-                            <span class="yellow-bg">Call In BK <img src="assets/img/shape/yellow-bg-2.png" alt=""></span><br>
+                            <span class="yellow-bg">{{ $pengaturan->nama_situs }}<img src="assets/img/shape/yellow-bg-2.png" alt=""></span><br>
                         </h2>
-                        <p>Dokumentasi momen berharga selama kegiatan Call In BK berlangsung.</p>
+                        <p>Dokumentasi momen berharga selama kegiatan {{ $pengaturan->nama_situs }} berlangsung.</p>
                     </div>
                 </div>                
             </div>
