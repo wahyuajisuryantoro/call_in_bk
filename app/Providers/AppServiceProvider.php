@@ -30,5 +30,10 @@ class AppServiceProvider extends ServiceProvider
             $pengaturan = PengaturanSitus::first();
             $view->with('pengaturan', $pengaturan);
         });
+
+         View::composer('layouts.app', function ($view) {
+            $pengaturan = PengaturanSitus::first();
+            $view->with('pengaturanSitus', $pengaturan);
+        });
     }
 }
