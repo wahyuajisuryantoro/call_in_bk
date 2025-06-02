@@ -3,6 +3,7 @@
 namespace App\Models\Beranda;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BerandaLayanan extends Model
 {
@@ -12,4 +13,10 @@ class BerandaLayanan extends Model
     protected $casts = [
         'urutan' => 'integer',
     ];
+
+    public function isiLayanan(): HasMany
+    {
+        return $this->hasMany(IsiLayanan::class, 'layanan_id');
+    }
+
 }

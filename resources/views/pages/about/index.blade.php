@@ -26,7 +26,7 @@
                     <div class="about__thumb-wrapper">
 
                         <div class="about__review">
-                            <h5> <span>Tentang</span> Call In BK</h5>
+                            <h5> <span>Tentang</span> {{ $pengaturan->nama_situs }}</h5>
                         </div>
                         <div class="about__thumb ml-100">
                             <img src="{{ asset('storage/' . $tentangKontent->gambar1) }}" alt="Gambar 1">

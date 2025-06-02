@@ -250,7 +250,7 @@
                             </div>
                             <div class="category__content">
                                 <h4 class="category__title">
-                                    <a href="#layanan-{{ $item->id }}">{{ $item->nama_layanan }}</a>
+                                    <a href="{{ route('layanan', $item->id) }}">{{ $item->nama_layanan }}</a>
                                 </h4>
                                 <p>{{ $item->deskripsi }}</p>
                             </div>
