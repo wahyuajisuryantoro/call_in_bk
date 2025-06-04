@@ -8,11 +8,11 @@ use App\Models\Pengaturan\PengaturanSitus;
 
 class AboutController extends Controller
 {
-    public function index()
+   public function index()
     {
         $title = 'Tentang Kami';
-         $pengaturan = PengaturanSitus::first();
-        $tentangKontent = TentangKonten::first();
-        return view('pages.about.index', compact('title', 'pengaturan','tentangKontent'));
+        $pengaturan = PengaturanSitus::first();
+        $tentangKonten = TentangKonten::orderBy('created_at', 'asc')->get();     
+        return view('pages.about.index', compact('title', 'pengaturan', 'tentangKonten'));
     }
 }
