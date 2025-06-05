@@ -446,8 +446,9 @@
                                             </svg>
                                         </div>
                                         <div class="contact__info-text">
-                                            <h4>Phone</h4>
-                                            <a href="tel:{{ $pengaturan->telepon ?? '' }}">
+                                            <h4>No Telp</h4>
+                                            <a href="#" class="whatsapp-link"
+                                                onclick="openWhatsApp('{{ $pengaturan->telepon }}')">
                                                 {{ $pengaturan->telepon ?? 'Telepon belum diisi' }}
                                             </a>
                                         </div>
@@ -496,6 +497,19 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
 
     <script>
+        function openWhatsApp(phoneNumber) {
+            let cleanNumber = phoneNumber.replace(/[^0-9]/g, '');
+            if (cleanNumber.startsWith('0')) {
+                cleanNumber = '62' + cleanNumber.substring(1);
+            }
+            if (!cleanNumber.startsWith('62')) {
+                cleanNumber = '62' + cleanNumber;
+            }
+            const defaultMessage = 'Halo, saya ingin bertanya.';
+            const encodedMessage = encodeURIComponent(defaultMessage);
+            const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
         document.addEventListener('DOMContentLoaded', function() {
             @if (session('success'))
                 Swal.fire({
